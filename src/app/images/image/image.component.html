@@ -1,29 +1,41 @@
+<div class="row" xmlns:text-align="http://www.w3.org/1999/xhtml">
+  <div class="col-md-8 offset-md-2">
+    <blockquote class="blockquote">
+      <p class="mb-0 h3 display-4">Photo Gallery.</p>
+      <footer class="blockquote-footer">with <cite title="Source Title">Firebase Storage</cite> and <cite title="Source Title">Angular CLI</cite> </footer>
+    </blockquote>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
 <div class="card" style="width: 25rem">
   <div class="card-body">
-
-    <form [formGroup]="formGroup">
-
-      <div class="custom-file" style="margin-bottom: 20px">
-        <input type="file" class="custom-file-input" id="validatedCustomFile" formControlName="imageUrl">
-        <label class="custom-file-label" for="validatedCustomFile">Select file to upload</label>
-        <div class="invalid-feedback">Example invalid custom file feedback</div>
+    <form [formGroup]="formGroup" (submit)="onSubmit(formGroup.value)" >
+    <div class="text-center">
+      <img [src] = "imgSrc"  width="350px" height="250px" (click)="fileUploader.click()">
+    </div>
+    <div class="text-center">
+      <div class="form-group" >
+        <label>Select file to upload</label>
+        <input type="file" accept="image/*" class="form-control"  #fileUploader formControlName="imageUrl" (change)="showPreview($event)">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">***This field is required***</div>
       </div>
-
       <div class="form-group">
-        <label>Caption</label>
         <input class="form-control" formControlName="caption" placeholder="Caption">
+        <div class="text-danger" *ngIf="isSubmitted && formControls.caption.errors?.required">***This field is required***</div>
       </div>
-
       <div class="form-group">
-        <label>Select a category</label>
         <select formControlName="category" class="form-control">
           <option value="Animal">Animal</option>
           <option value="Vehicle">Vehicle</option>
           <option value="Bird">Bird</option>
         </select>
+        <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">***This field is required***</div>
       </div>
-
+      <div class="form-group">
+        <button type="submit" class="btn btn-success float-right">Submit</button>
+      </div>
+    </div>
     </form>
-
   </div>
 </div>

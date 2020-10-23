@@ -1,13 +1,13 @@
 <div class="row" xmlns:text-align="http://www.w3.org/1999/xhtml">
   <div class="col-md-8 offset-md-2">
     <blockquote class="blockquote">
-      <p class="mb-0 h3 display-4">Photo Gallery.</p>
-      <footer class="blockquote-footer">with <cite title="Source Title">Firebase Storage</cite> and <cite title="Source Title">Angular CLI</cite> </footer>
+      <p class="mb-0 h3 display-4">***Photo Gallery.***</p>
+      <footer class="blockquote-footer">**with <cite title="Source Title">Firebase Storage</cite> and <cite title="Source Title">Angular CLI**</cite> </footer>
     </blockquote>
     <router-outlet></router-outlet>
   </div>
 </div>
-
+<div class="col-md-8 offset-md-2">
 <div class="card" style="width: 25rem">
   <div class="card-body">
     <form [formGroup]="formGroup" (submit)="onSubmit(formGroup.value)" >
@@ -32,10 +32,17 @@
         </select>
         <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">***This field is required***</div>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success float-right">Submit</button>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <a routerLink="/image/list" class="btn btn-primary btn-block float-right">Go to Gallery</a>
+        </div>
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
+        </div>
       </div>
+
     </div>
     </form>
   </div>
+</div>
 </div>

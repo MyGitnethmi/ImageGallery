@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+#grad1 {
+  height: 200px;
+  background-color: #cccccc;
+  background-image: repeating-linear-gradient(red, yellow 10%, green 20%);
+}

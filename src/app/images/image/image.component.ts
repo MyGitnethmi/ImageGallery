@@ -56,15 +56,20 @@ export class ImageComponent implements OnInit {
     // @ts-ignore
     if (this.formGroup.valid){
       // tslint:disable-next-line:no-unused-expression
-      const filePath = '${formValue.category}/${this.selectedImage.name.split(\'; \').slice(0,-1).join(\'; \')}_${(new Date().getime()}';
+      const filePath = `${formValue.category}/${this.selectedImage.name.split(/'; '/).slice(0, -1).join(/'; '/)}_${new Date().getTime()}`;
+      console.log(filePath);
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
+          fileRef.getDownloadURL().subscribe(
+            (url) => {
             formValue.imageUrl = url ;
             this.service.insertImageDetails(formValue);
             this.resetForm();
-          });
+          },
+            error => {
+              console.log(error);
+            });
         })
       ).subscribe();
     }
